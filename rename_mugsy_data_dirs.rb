@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'fileutils'
 
 # Define the MugsyClicks manual upload directory is
@@ -11,15 +12,16 @@ Dir.glob("#{mugsy_data_dir}/*").each do |dir|
   #  * $
   #  * !
   #  * :
-  # Then strip it out 
+  # Then strip it out.
+  # 
+  # Using \W would have been easier and more readable,
+  #  however, we allow for dashes ("-").
   if dir.to_str.match(/[\s|\\|:|$|!]/)
     fixed_dir = dir.to_str.gsub(/[\s|\\|:|$|!]/, '')
-    puts "bad dir = #{fixed_dir}"
-    puts "Renaming..."
+    puts "Renaming #{dir.to_str} to #{fixed_dir}"
     # Move the directory from the old name,
     # to the new name.
     FileUtils.mv dir.to_str, fixed_dir
   end
 
 end
-
