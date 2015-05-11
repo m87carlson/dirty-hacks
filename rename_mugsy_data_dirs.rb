@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+require 'syslog/logger'
 
 # Define the MugsyClicks manual upload directory is
 mugsy_data_dir = "/data/mugsyclicks/000_NoImport_NoEmail"
+
+# Log via Syslog
+log = Syslog::Logger.new 'renmae_mugsy_dir'
 
 # Match all sub-directories, process each one.
 Dir.glob("#{mugsy_data_dir}/*").each do |dir| 
@@ -18,7 +22,8 @@ Dir.glob("#{mugsy_data_dir}/*").each do |dir|
   #  however, we allow for dashes ("-").
   if dir.to_str.match(/[\s|\\|:|$|!]/)
     fixed_dir = dir.to_str.gsub(/[\s|\\|:|$|!]/, '')
-    puts "Renaming #{dir.to_str} to #{fixed_dir}"
+    # log event
+    log.info "Renaming #{dir.to_str} to #{fixed_dir}"
     # Move the directory from the old name,
     # to the new name.
     FileUtils.mv dir.to_str, fixed_dir
