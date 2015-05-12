@@ -6,7 +6,7 @@ require 'syslog/logger'
 mugsy_data_dir = "/data/mugsyclicks/000_NoImport_NoEmail"
 
 # Log via Syslog
-log = Syslog::Logger.new 'renmae_mugsy_dir'
+log = Syslog::Logger.new 'rename_mugsy_dir'
 
 # Match all sub-directories, process each one.
 Dir.glob("#{mugsy_data_dir}/*").each do |dir| 
