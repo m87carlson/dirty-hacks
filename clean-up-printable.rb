@@ -23,7 +23,7 @@ f.each_line do |line|
   if File.exists?(order_dir) && File.directory?(order_dir)
     puts "Order Directory: #{order_dir} exists, printable not removable"
   else
-    printable_dir = order_dir.sub('_ORDERS', '_PRINTABLES')
+    printable_dir = order_dir.sub('_ORDERS', '_PRINTABLE')
     puts "Cleaning up Printable folder: #{printable_dir}"
     #FileUtiles.rm_rf(printable_dir)
   end
