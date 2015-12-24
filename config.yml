@@ -1,0 +1,5 @@
+config:
+    order_type: SPS
+    src_dir: /home/mikec/projects/dirty-hacks/BAYXML-1
+    log_file: /tmp/listener_sps.log
+    debug: true
