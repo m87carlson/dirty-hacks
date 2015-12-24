@@ -27,7 +27,7 @@ class XML_Demux
   end
 
   def demux
-    listener = Listen.to(@src_dir) do |modified, added, removed|
+    listener = Listen.to(@src_dir, only: %r{(.zip|.txt)}) do |modified, added, removed|
 
       modified.each do |item|
         tmp_item = item.split(@order_type).last.split('.').first.gsub(/(.zip|.txt|_done)/, '')
