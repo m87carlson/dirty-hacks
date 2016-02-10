@@ -29,7 +29,7 @@ class XML_Demux
   def demux
     listener = Listen.to(@src_dir, only: %r{(.zip|.txt)}) do |modified, added, removed|
 
-      modified.each do |item|
+      added.each do |item|
         tmp_item = item.split(@order_type).last.split('.').first.gsub(/(.zip|.txt|_done)/, '')
         # calculate a checksum
         pre_sum = Digest::MD5.file(item)
