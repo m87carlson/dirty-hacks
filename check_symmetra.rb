@@ -46,7 +46,7 @@ def get_snmp_data(oid)
 end
 
 if up?(APC_SYM_HOST)
-  acp_host=get_snmp_data(APC_SYM_HOSTNAME)
+  apc_host=get_snmp_data(APC_SYM_HOSTNAME)
   status=get_apc_status(get_snmp_data(APC_SYM_STATUS).to_i)
   battery_capacity=get_snmp_data(APC_SYM_BATTCAP_OID)
   battery_temp=(get_snmp_data(APC_SYM_BATTTEMP_OID).to_i * (9.0 / 5.0)) + 32
