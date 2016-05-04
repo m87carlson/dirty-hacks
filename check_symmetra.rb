@@ -46,7 +46,7 @@ def get_snmp_data(oid)
 end
 
 if up?(APC_SYM_HOST)
-  hostname=get_snmp_data(APC_SYM_HOSTNAME)
+  acp_host=get_snmp_data(APC_SYM_HOSTNAME)
   status=get_apc_status(get_snmp_data(APC_SYM_STATUS).to_i)
   battery_capacity=get_snmp_data(APC_SYM_BATTCAP_OID)
   battery_temp=(get_snmp_data(APC_SYM_BATTTEMP_OID).to_i * (9.0 / 5.0)) + 32
@@ -55,7 +55,7 @@ if up?(APC_SYM_HOST)
   output_voltage=get_snmp_data(APC_SYM_OUTPUTV_OID)
   output_load=get_snmp_data(APC_SYM_OUTPUTL_OID)
 
-  `logger "host=#{hostname}|status=#{status}|battery_capacity=#{battery_capacity}|battery_temp=#{battery_temp}|runtime=#{runtime}|input_voltage=#{input_voltage}|output_voltage=#{output_voltage}|output_load=#{output_load}"`
+  `logger "apc_host=#{apc_host}|status=#{status}|battery_capacity=#{battery_capacity}|battery_temp=#{battery_temp}|runtime=#{runtime}|input_voltage=#{input_voltage}|output_voltage=#{output_voltage}|output_load=#{output_load}"`
 else
-  `logger "host=#{APC_SYM_HOST}|battery_capacity=0|battery_temp=0|runtime=0|input_voltage=0|output_voltage=0|output_load=0"`
+  `logger "apc_host=#{APC_SYM_HOST}|battery_capacity=0|battery_temp=0|runtime=0|input_voltage=0|output_voltage=0|output_load=0"`
 end
